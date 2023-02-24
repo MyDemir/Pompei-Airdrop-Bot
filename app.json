@@ -1,7 +1,7 @@
 {
   "name": "AITradex-Airdrop-Bot",
   "logo": "https://miro.medium.com/max/1400/1*6A_cOfu7NqZZl16RJxEwSw.png",
-  "description": "AITradex Airdrop",
+  "description": "AITradex Airdropd",
   "keywords": ["airdrop", "cryptocurrency", "telegram", "bot"],
   "repository": "https://github.com/MyDemir/Pompei-Airdrop-Bot/",
   "stack": "container",
