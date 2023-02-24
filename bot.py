@@ -257,7 +257,7 @@ def submit_details(update, context):
     update.message.reply_text(text="Please click on \"Submit Details\" to proceed", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Submit Details"], ["Cancel"]]
     ))
-    return FOLLOW_TELEGRAM
+    return follow_telegram
 
 
 def follow_telegram(update, context):
