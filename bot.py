@@ -281,7 +281,7 @@ def check_joined_channel(user):
 
 def follow_twitter(update, context):
     if not check_joined_channel(user = update.message.from_user.id):
-            update.message.reply_text(text=f"You have not joined!\n\nPlease join first and click on "Done" to proceed\n{TELEGRAM_LINKS}", reply_markup=ReplyKeyboardMarkup(
+            update.message.reply_text(text=f'You have not joined!\n\nPlease join first and click on "Done" to proceed\n{TELEGRAM_LINKS}', reply_markup=ReplyKeyboardMarkup(
                 [["Done"], ["Cancel"],["/restart"]]
             ))
             return FOLLOW_TWITTER
