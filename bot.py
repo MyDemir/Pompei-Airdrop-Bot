@@ -1,4 +1,3 @@
-
 # %% Dependencies
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update, InlineKeyboardMarkup
 from bson.json_util import dumps
@@ -32,7 +31,6 @@ AIRDROP_DATE = os.environ["AIRDROP_DATE"]
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 AIRDROP_NETWORK = os.environ["AIRDROP_NETWORK"]
 REFERRAL_REWARD = float(os.environ["REFERRAL_REWARD"])
-COIN_PRICE = os.environ["COIN_PRICE"]
 WEBSITE_URL = os.environ["WEBSITE_URL"]
 DB_URI = os.environ["DB_URI"]
 EXPLORER_URL = os.environ["EXPLORER_URL"]
@@ -74,63 +72,54 @@ updater = Updater(token=BOT_TOKEN, use_context=True, persistence=persistence)
 dispatcher = updater.dispatcher
 
 # %% Message Strings
-if(COIN_PRICE == "0"):
-    SYMBOL = ""
-else:
-    SYMBOL = f"\n⭐️ 1 {COIN_SYMBOL} = {COIN_PRICE}"
 if(EXPLORER_URL != ""):
     EXPLORER_URL = f"\nContract: {EXPLORER_URL}"
 if(WEBSITE_URL != ""):
     WEBSITE_URL = f"\nWebsite: {WEBSITE_URL}"
 WELCOME_MESSAGE = f"""
-Hello, NAME! I am your friendly {COIN_NAME} Airdrop bot
-{SYMBOL}
+Hello, NAME!👋 I am your friendly {COIN_NAME} Airdrop bot
+
 ⭐️ For Joining - Get {AIRDROP_AMOUNT} {COIN_SYMBOL}
 ⭐️ For each referral - Get {"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL}
 
 📘By Participating you are agreeing to the {COIN_NAME} (Airdrop) Program Terms and Conditions. Please see pinned post for more information.
+
 Click "🚀 Join Airdrop" to proceed"""
 tasks = ""
 
 PROCEED_MESSAGE = f"""
+🔹 Airdrop Date = *{AIRDROP_DATE}*
+🔹 Total Prize pool = 3,000,000.00 *{COIN_SYMBOL}*
 🔹 Airdrop Reward = *{AIRDROP_AMOUNT} {COIN_SYMBOL}*
-🔹 Extra reward per referral = *{"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL}* (max {MAX_REFS}){SYMBOL}
+🔹 Extra reward per referral = *{"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL}* 
+   (max {MAX_REFS})
 
-📢 Airdrop Rules
-
-✏️ Mandatory Tasks:
+📢 Airdrop Rules/Mandatory Tasks:
 - Join our Telegram group(s)
-- Follow our Twitter page(s)
+- Follow our Twitter page
+- Retweet,like pinned tweet
 - Join our Discord server(s)
 
 NOTE: Users found cheating would be disqualified & banned immediately.
 
-Airdrop Date: *{AIRDROP_DATE}*{EXPLORER_URL}
-{WEBSITE_URL}
 """
 
 MAKE_SURE_TELEGRAM = f"""
-🔹 Do not forget to join our Telegram group(s)
-{TELEGRAM_LINKS}
+⭐️ Do not forget to join our Telegram group(s): {TELEGRAM_LINKS}
 """
 
 FOLLOW_TWITTER_TEXT = f"""
-🔹 Follow our Twitter page(s)
-{TWITTER_LINKS}
+⭐️ Follow our Twitter page(s): {TWITTER_LINKS}
 """
 
 JOIN_DISCORD_TEXT = f'''
-🔹 Join our Discord server(s)
-{DISCORD_LINKS}
+⭐️ Join our Discord server(s): {DISCORD_LINKS}
 '''
 
 SUBMIT_BEP20_TEXT = f"""
-Type in *your Wallet Address*
+⭐️ Please make sure your wallet supports the *{AIRDROP_NETWORK}*
 
-Please make sure your wallet supports the *{AIRDROP_NETWORK}*
-
-Example:
-0xdEAD000000000000000042069420694206942069
+Example: 0xdEAD000000000000000042069420694206942069
 
 _Incorrect Details? Use_ /restart _command to start over._
 """
@@ -143,12 +132,13 @@ Don't forget to:
 🔸 Stay in the telegram channels
 🔸 Follow all the social media channels for the updates
 
-Your personal referral link (+{"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL} for each referral)
+Your personal referral link: (+{"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL} for each referral)
 REPLACEME
 """
 
 WITHDRAWAL_TEXT = f"""
 Withdrawals would be sent out automatically to your {AIRDROP_NETWORK} address on the {AIRDROP_DATE}
+
 NOTE: Users found cheating would be disqualified & banned immediately."""
 
 BALANCE_TEXT = f"""
@@ -291,8 +281,8 @@ def check_joined_channel(user):
 
 def follow_twitter(update, context):
     if not check_joined_channel(user = update.message.from_user.id):
-            update.message.reply_text(text=f'You have not joined\n {TELEGRAM_LINKS}\nPlease join first and click on "Done" to proceed', reply_markup=ReplyKeyboardMarkup(
-                [["Done"], ["Cancel"],["/restart"]]
+            update.message.reply_text(text=f'You have not joined!\n{TELEGRAM_LINKS}\nPlease join first and click on "Done" to proceed', reply_markup=ReplyKeyboardMarkup(
+                [["Done"], ["Cancel"], ["/restart"]]
             ))
             return FOLLOW_TWITTER
     update.message.reply_text(text=FOLLOW_TWITTER_TEXT, parse_mode=telegram.ParseMode.MARKDOWN)
@@ -313,7 +303,7 @@ def submit_address(update, context):
         return JOIN_DISCORD
     USERINFO[user.id].update({"twitter_username": update.message.text.strip()})
     update.message.reply_text(text=JOIN_DISCORD_TEXT, parse_mode=telegram.ParseMode.MARKDOWN)
-    update.message.reply_text(text="Type in *your Discord username* to proceed.\n\nExample: \nExample#1234 \n\n_Incorrect Details? Use_ /restart _command to start over._", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text(text="Type in *your Discord username* to proceed.\n\nExample: jasmy#1234 \n\n_Incorrect Details? Use_ /restart _command to start over._", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"],["/restart"]]
     ))
     return SUBMIT_ADDRESS
@@ -323,7 +313,7 @@ def submit_discord(update, context):
     if not user.id in USERINFO:
         return startAgain(update, context)
     if users.find({"discord_username": update.message.text.strip()}).count() != 0:
-        update.message.reply_text(text="Discord Username Already Exists. Try again!\n\nExample: \nExample#1234", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+        update.message.reply_text(text="Discord Username Already Exists. Try again!\n\nExample: jasmy#1234", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
             [["Cancel"],["/restart"]]
         ))
         return SUBMIT_ADDRESS
@@ -349,7 +339,7 @@ def end_conversation(update, context):
     if not user.id in USERINFO:
         return startAgain(update, context)
     if users.find({"bep20": update.message.text}).count() != 0:
-        update.message.reply_text(text="Wallet Address Already Exists. Try again!\n\nExample: \n0xdEAD000000000000000042069420694206942069", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+        update.message.reply_text(text="Wallet Address Already Exists. Try again!\n\n Example: 0xdEAD000000000000000042069420694206942069", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"],["/restart"]]
     ))
         return END_CONVERSATION
@@ -462,7 +452,6 @@ Referrals: {refferals}
 {AIRDROP_NETWORK} address: {bep20Address}
 Twitter Username: {twitterUsername}
 Discord Username: {discordUsername}
-
 _Incorrect Details? Use_ /restart _command to start over._
 Don't worry, your referrals are safe.
 """
@@ -494,19 +483,19 @@ def error_telegram(update,context):
     return FOLLOW_TWITTER
 
 def error_twitter(update,context):
-    update.message.reply_text(text="Invalid Twitter Link. Try again! \n\nExample: \nhttps://twitter.com/example", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text(text="Invalid Twitter Link. Try again! \n\nExample: https://twitter.com/example", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"]]
     ))
     return JOIN_DISCORD
 
 def error_discord(update,context):
-    update.message.reply_text(text="Invalid Discord Username. Try again!\n\nExample: \nExample#1234", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text(text="Invalid Discord Username. Try again!\n\nExample: jasmy#1234", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"],["/restart"]]
     ))
     return SUBMIT_ADDRESS
 
 def error_bsc(update,context):
-    update.message.reply_text(text="Invalid Wallet Address. Try again!\n\nExample: \n0xdEAD000000000000000042069420694206942069", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text(text="Invalid Wallet Address. Try again!\n\nExample: 0xdEAD000000000000000042069420694206942069", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"],["/restart"]]
     ))
     return END_CONVERSATION
@@ -583,10 +572,11 @@ def getStats(update, context):
     list = users.find({})
     refes = users.find({"ref": {"$ne": False}}).count()
     reply = f"""
-Currently there are *{list.count()} users* joined the airdrop!
-Currently there are *{refes} users* joined by referrals
-A total of *{"{:,.2f}".format(float(AIRDROP_AMOUNT.replace(",",""))*list.count())} {COIN_SYMBOL}* will be distributed as participation rewards
-A total of *{"{:,.2f}".format(REFERRAL_REWARD*refes)} {COIN_SYMBOL}* referral rewards will be distributed
+📘Currently there are *{list.count()} users* joined the airdrop!
+📘Currently there are *{refes} users* joined by referrals
+
+⭐️A total of *{"{:,.2f}".format(float(AIRDROP_AMOUNT.replace(",",""))*list.count())} {COIN_SYMBOL}* will be distributed as participation rewards
+⭐️A total of *{"{:,.2f}".format(REFERRAL_REWARD*refes)} {COIN_SYMBOL}* referral rewards will be distributed
 """
     update.message.reply_text(reply, parse_mode=telegram.ParseMode.MARKDOWN)
 
