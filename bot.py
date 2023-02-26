@@ -477,7 +477,7 @@ def error_submitdetails(update, context):
     return FOLLOW_TELEGRAM
 
 def error_telegram(update,context):
-    update.message.reply_text('Please click on "Done" to proceed, or "Cancel" to cancel the Airdrop',reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text('Please click on \"Done\" to proceed, or \"Cancel\" to cancel the Airdrop',reply_markup=ReplyKeyboardMarkup(
         [["Done"], ["Cancel"]]
     ))
     return FOLLOW_TWITTER
