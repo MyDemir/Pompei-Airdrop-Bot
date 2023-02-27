@@ -59,7 +59,7 @@ else:
 # %% MONGODB CONNECTION
 CONNECTION_STRING = os.environ.get("DB_URI")
 myclient = pymongo.MongoClient(CONNECTION_STRING)
-mydb = myclient["airdrop"]
+mydb = myclient["AiTradex"]
 users = mydb["users"]
 users.create_index([('ref', pymongo.TEXT)], name='search_index', default_language='english')
 users.create_index("userId")
