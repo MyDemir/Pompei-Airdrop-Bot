@@ -273,7 +273,7 @@ def check_joined_channel(user):
         for link in TELEGRAM_LINKS.split("\n"):
             link ='@'+link.split("/")[-1]
             reply = telegram.bot.Bot(BOT_TOKEN).get_chat_member(link,user)
-            if reply.status in ('left','kicked'):
+            if reply.status in('left','kicked'):
                 return False
     except:
         return False
