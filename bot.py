@@ -1,5 +1,6 @@
 # %% Dependencies
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update, InlineKeyboardMarkup
+from telegram.helpers import escape_markdown
 from bson.json_util import dumps
 from multicolorcaptcha import CaptchaGenerator
 from jokes import getJoke
@@ -261,7 +262,7 @@ def submit_details(update, context):
 
 
 def follow_telegram(update, context):
-    update.message.reply_text(text=MAKE_SURE_TELEGRAM)
+    update.message.reply_text(text=escape_markdown(MAKE_SURE_TELEGRAM, 2))
     update.message.reply_text(text="Please click on \"Done\" to proceed", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Done"], ["Cancel"]]
     ))
