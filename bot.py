@@ -149,22 +149,6 @@ Referral Balance: *REFERRALBALANCE*
 
 # %% Functions
 
-def escape_markdown(text: str) -> str:
-    """
-    Escape invalid markdown chars
-    :param text: Text
-    :return: Escaped text
-    """
-
-    escape_chars = r'~>#+-=|{}.!_*[]()'
-
-    text = re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
-
-    # Escape eventual quadruple backslashes with a double backslash
-    text = text.replace('\\\\', '\\')
-
-    return text
-
 def setBotStatus(status):
     BOT_STATUS["status"] = status
     pickle.dump(BOT_STATUS, open(STATUS_PATH, "wb"))
@@ -267,6 +251,21 @@ def generateCaptcha(update, context):
     update.message.reply_text("Please type in the numbers on the image",reply_markup=ReplyKeyboardRemove())
     return CAPTCHASTATE
 
+def escape_markdown(text: str) -> str:
+    """
+    Escape invalid markdown chars
+    :param text: Text
+    :return: Escaped text
+    """
+
+    escape_chars = r'~>#+-=|.!_*[]()'
+
+    text = re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
+
+    # Escape eventual quadruple backslashes with a double backslash
+    text = text.replace('\\\\', '\\')
+
+    return text
 
 def submit_details(update, context):
     update.message.reply_text(text=PROCEED_MESSAGE, parse_mode=telegram.ParseMode.MARKDOWN)
