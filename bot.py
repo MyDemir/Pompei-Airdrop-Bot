@@ -277,7 +277,7 @@ def submit_details(update, context):
 
 
 def follow_telegram(update, context):
-    update.message.reply_text(text=escape_markdown(MAKE_SURE_TELEGRAM))
+    update.message.reply_text(text=escape_markdown(MAKE_SURE_TELEGRAM), parse_mode=telegram.ParseMode.MARKDOWN)
     update.message.reply_text(text="Please click on \"Done\" to proceed", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Done"], ["Cancel"]]
     ))
