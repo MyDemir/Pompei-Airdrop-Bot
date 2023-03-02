@@ -1,6 +1,5 @@
 # %% Dependencies
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update, InlineKeyboardMarkup
-from telegram.helpers import escape_markdown
 from bson.json_util import dumps
 from multicolorcaptcha import CaptchaGenerator
 from jokes import getJoke
@@ -14,6 +13,7 @@ from telegram.ext import (
     PicklePersistence,
 )
 from telegram.utils import helpers
+import re
 import telegram
 import pymongo
 import logging
@@ -149,6 +149,21 @@ Referral Balance: *REFERRALBALANCE*
 
 # %% Functions
 
+def escape_markdown(text: str) -> str:
+    """
+    Escape invalid markdown chars
+    :param text: Text
+    :return: Escaped text
+    """
+
+    escape_chars = r'~>#+-=|{}.!_*[]()'
+
+    text = re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
+
+    # Escape eventual quadruple backslashes with a double backslash
+    text = text.replace('\\\\', '\\')
+
+    return text
 
 def setBotStatus(status):
     BOT_STATUS["status"] = status
