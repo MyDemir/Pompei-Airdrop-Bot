@@ -14,6 +14,7 @@ from telegram.ext import (
 )
 from telegram.utils import helpers
 import telegram
+import re
 import pymongo
 import logging
 import os
@@ -98,7 +99,6 @@ PROCEED_MESSAGE = f"""
 - Join our Telegram group(s)
 - Follow our Twitter page
 - Retweet,like pinned tweet
-- Join our Discord server(s)
 
 NOTE: Users found cheating would be disqualified & banned immediately.
 
@@ -265,7 +265,6 @@ def follow_telegram(update, context):
     update.message.reply_text(text="Please click on \"Done\" to proceed", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Done"], ["Cancel"]]
     ))
-
     return FOLLOW_TWITTER
 
 def check_joined_channel(user):
@@ -279,6 +278,21 @@ def check_joined_channel(user):
         return False
     return True
 
+def escape_markdown(text: str) -> str:
+    """
+    Escape invalid markdown chars
+    :param text: Text
+    :return: Escaped text
+    """
+
+    escape_chars = r'~>#+-=|.!_*[]()'
+
+    text = re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
+
+    # Escape eventual quadruple backslashes with a double backslash
+    text = text.replace('\\\\', '\\')
+
+    return text
 def follow_twitter(update, context):
     if not check_joined_channel(user = update.message.from_user.id):
             update.message.reply_text(text=f'You have not joined!\n{TELEGRAM_LINKS}\nPlease join first and click on "Done" to proceed', reply_markup=ReplyKeyboardMarkup(
@@ -286,7 +300,7 @@ def follow_twitter(update, context):
             ))
             return FOLLOW_TWITTER
     update.message.reply_text(text=FOLLOW_TWITTER_TEXT, parse_mode=telegram.ParseMode.MARKDOWN)
-    update.message.reply_text(text="Type in the link to *your Twitter profile* to proceed.\n\nExample: \nhttps://twitter.com/example", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text(text="Type in the link to *your Twitter profile* to proceed.\nExample: \nhttps://twitter.com/example", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"]]
     ))
     return JOIN_DISCORD
