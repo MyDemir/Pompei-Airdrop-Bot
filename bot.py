@@ -13,7 +13,6 @@ from telegram.ext import (
     PicklePersistence,
 )
 from telegram.utils import helpers
-import re
 import telegram
 import pymongo
 import logging
@@ -149,6 +148,7 @@ Referral Balance: *REFERRALBALANCE*
 
 # %% Functions
 
+
 def setBotStatus(status):
     BOT_STATUS["status"] = status
     pickle.dump(BOT_STATUS, open(STATUS_PATH, "wb"))
@@ -251,21 +251,6 @@ def generateCaptcha(update, context):
     update.message.reply_text("Please type in the numbers on the image",reply_markup=ReplyKeyboardRemove())
     return CAPTCHASTATE
 
-def escape_markdown(text: str) -> str:
-    """
-    Escape invalid markdown chars
-    :param text: Text
-    :return: Escaped text
-    """
-
-    escape_chars = r'~>#+-=|.!_*[]()'
-
-    text = re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
-
-    # Escape eventual quadruple backslashes with a double backslash
-    text = text.replace('\\\\', '\\')
-
-    return text
 
 def submit_details(update, context):
     update.message.reply_text(text=PROCEED_MESSAGE, parse_mode=telegram.ParseMode.MARKDOWN)
@@ -276,7 +261,7 @@ def submit_details(update, context):
 
 
 def follow_telegram(update, context):
-    update.message.reply_text(text=escape_markdown(MAKE_SURE_TELEGRAM), parse_mode=telegram.ParseMode.MARKDOWN)
+    update.message.reply_text(text=MAKE_SURE_TELEGRAM)
     update.message.reply_text(text="Please click on \"Done\" to proceed", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Done"], ["Cancel"]]
     ))
