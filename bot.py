@@ -69,7 +69,7 @@ users.create_index("userId")
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 print(BOT_TOKEN)
-persistence = PicklePersistence(filename='conversationbot/conversationbot')
+persistence = PicklePersistence(filename='images')
 updater = Updater(token=BOT_TOKEN, use_context=True, persistence=persistence)
 dispatcher = updater.dispatcher
 
