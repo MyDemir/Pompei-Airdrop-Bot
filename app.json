@@ -43,6 +43,11 @@
       "description": "The token you get from @BotFather. Example: 1313552295:AAFxDGKhlco-FoWw-uyxInotlKvalidNEz-Q",
       "required": true
     },
+    "COIN_PRICE": {
+      "description": "Current price of coin Example: $0.01",
+      "required": true,
+      "value": "$0.00005"
+    },
     "REFERRAL_REWARD": {
       "description": "Extra reward participants will get for each referral. Example: 1000. Do not include ',' must be float number",
       "required": true,
