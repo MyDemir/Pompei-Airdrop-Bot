@@ -1,27 +1,29 @@
-2023-03-03 21:54:43,986 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
-2023-03-03T21:54:43.988486+00:00 app[worker.1]: Traceback (most recent call last):
-2023-03-03T21:54:43.988486+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 432, in process_update
-2023-03-03T21:54:43.988487+00:00 app[worker.1]:     handler.handle_update(update, self, check, context)
-2023-03-03T21:54:43.988487+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/ext/conversationhandler.py", line 517, in handle_update
-2023-03-03T21:54:43.988490+00:00 app[worker.1]:     new_state = handler.handle_update(update, dispatcher, check_result, context)
-2023-03-03T21:54:43.988490+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/ext/handler.py", line 156, in handle_update
-2023-03-03T21:54:43.988491+00:00 app[worker.1]:     return self.callback(update, context)
-2023-03-03T21:54:43.988491+00:00 app[worker.1]:   File "/app/bot.py", line 302, in follow_twitter
-2023-03-03T21:54:43.988492+00:00 app[worker.1]:     update.message.reply_text(text=FOLLOW_TWITTER_TEXT, parse_mode=telegram.ParseMode.MARKDOWN)
-2023-03-03T21:54:43.988492+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/message.py", line 603, in reply_text
-2023-03-03T21:54:43.988493+00:00 app[worker.1]:     return self.bot.send_message(self.chat_id, *args, **kwargs)
-2023-03-03T21:54:43.988493+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/decorator.py", line 232, in fun
-2023-03-03T21:54:43.988493+00:00 app[worker.1]:     return caller(func, *(extras + args), **kw)
-2023-03-03T21:54:43.988494+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/bot.py", line 135, in decorator
-2023-03-03T21:54:43.988494+00:00 app[worker.1]:     result = func(*args, **kwargs)
-2023-03-03T21:54:43.988494+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/bot.py", line 466, in send_message
-2023-03-03T21:54:43.988495+00:00 app[worker.1]:     api_kwargs=api_kwargs,
-2023-03-03T21:54:43.988495+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/bot.py", line 281, in _message
-2023-03-03T21:54:43.988496+00:00 app[worker.1]:     result = self._post(endpoint, data, timeout=timeout, api_kwargs=api_kwargs)
-2023-03-03T21:54:43.988496+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/bot.py", line 245, in _post
-2023-03-03T21:54:43.988496+00:00 app[worker.1]:     return self.request.post(f'{self.base_url}/{endpoint}', data=data, timeout=timeout)
-2023-03-03T21:54:43.988496+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/utils/request.py", line 354, in post
-2023-03-03T21:54:43.988497+00:00 app[worker.1]:     **urlopen_kwargs,
-2023-03-03T21:54:43.988497+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/utils/request.py", line 272, in _request_wrapper
-2023-03-03T21:54:43.988498+00:00 app[worker.1]:     raise BadRequest(message)
-2023-03-03T21:54:43.988498+00:00 app[worker.1]: telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 59
+
+2023-03-04T23:06:12.246113+00:00 app[worker.1]: telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 62
+2023-03-04T23:06:13.201345+00:00 app[worker.1]: 2023-03-04 23:06:13,200 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+2023-03-04T23:06:13.201369+00:00 app[worker.1]: Traceback (most recent call last):
+2023-03-04T23:06:13.201371+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 432, in process_update
+2023-03-04T23:06:13.201371+00:00 app[worker.1]:     handler.handle_update(update, self, check, context)
+2023-03-04T23:06:13.201371+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/ext/conversationhandler.py", line 517, in handle_update
+2023-03-04T23:06:13.201372+00:00 app[worker.1]:     new_state = handler.handle_update(update, dispatcher, check_result, context)
+2023-03-04T23:06:13.201372+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/ext/handler.py", line 156, in handle_update
+2023-03-04T23:06:13.201373+00:00 app[worker.1]:     return self.callback(update, context)
+2023-03-04T23:06:13.201373+00:00 app[worker.1]:   File "/app/bot.py", line 303, in follow_twitter
+2023-03-04T23:06:13.201373+00:00 app[worker.1]:     update.message.reply_text(text=FOLLOW_TWITTER_TEXT, parse_mode=telegram.ParseMode.MARKDOWN)
+2023-03-04T23:06:13.201374+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/message.py", line 603, in reply_text
+2023-03-04T23:06:13.201374+00:00 app[worker.1]:     return self.bot.send_message(self.chat_id, *args, **kwargs)
+2023-03-04T23:06:13.201375+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/decorator.py", line 232, in fun
+2023-03-04T23:06:13.201375+00:00 app[worker.1]:     return caller(func, *(extras + args), **kw)
+2023-03-04T23:06:13.201375+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/bot.py", line 135, in decorator
+2023-03-04T23:06:13.201376+00:00 app[worker.1]:     result = func(*args, **kwargs)
+2023-03-04T23:06:13.201376+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/bot.py", line 466, in send_message
+2023-03-04T23:06:13.201376+00:00 app[worker.1]:     api_kwargs=api_kwargs,
+2023-03-04T23:06:13.201377+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/bot.py", line 281, in _message
+2023-03-04T23:06:13.201377+00:00 app[worker.1]:     result = self._post(endpoint, data, timeout=timeout, api_kwargs=api_kwargs)
+2023-03-04T23:06:13.201377+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/bot.py", line 245, in _post
+2023-03-04T23:06:13.201378+00:00 app[worker.1]:     return self.request.post(f'{self.base_url}/{endpoint}', data=data, timeout=timeout)
+2023-03-04T23:06:13.201378+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/utils/request.py", line 354, in post
+2023-03-04T23:06:13.201379+00:00 app[worker.1]:     **urlopen_kwargs,
+2023-03-04T23:06:13.201379+00:00 app[worker.1]:   File "/usr/local/lib/python3.7/site-packages/telegram/utils/request.py", line 272, in _request_wrapper
+2023-03-04T23:06:13.201380+00:00 app[worker.1]:     raise BadRequest(message)
+2023-03-04T23:06:13.201380+00:00 app[worker.1]: telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 62

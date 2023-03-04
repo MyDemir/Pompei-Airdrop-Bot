@@ -300,7 +300,7 @@ def follow_twitter(update, context):
                 [["Done"], ["Cancel"], ["/restart"]]
             ))
             return FOLLOW_TWITTER
-    update.message.reply_text(text=FOLLOW_TWITTER_TEXT, parse_mode=telegram.ParseMode.MARKDOWN)
+    update.message.reply_text(text=FOLLOW_TWITTER_TEXT)
     update.message.reply_text(text="Type in the link to *your Twitter profile* to proceed.\nExample: \nhttps://twitter.com/example", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"]]
     ))
