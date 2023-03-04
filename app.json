@@ -43,11 +43,6 @@
       "description": "The token you get from @BotFather. Example: 1313552295:AAFxDGKhlco-FoWw-uyxInotlKvalidNEz-Q",
       "required": true
     },
-    "COIN_PRICE": {
-      "description": "Current price of coin Example: $0.01",
-      "required": true,
-      "value": "$0.00005"
-    },
     "REFERRAL_REWARD": {
       "description": "Extra reward participants will get for each referral. Example: 1000. Do not include ',' must be float number",
       "required": true,
@@ -91,11 +86,6 @@
       "description": "Twitter page links seperated by comma. Single Example: https://t.me/single. Multiple Example: https://t.me/multi,https://t.me/ple",
       "required": true,
       "value": "https://telegram.me/x100capitalofficial"
-    },
-    "DISCORD_LINKS": {
-      "description": "Discord server links seperated by comma. Single Example: https://discord.gg/example. Multiple Example: https://discord.gg/example,https://discord.gg/ple",
-      "required": true,
-      "value": "https://discord.gg/DS223xZf5Y"
     },
     "DB_URI": {
       "description": "Get one from https://cloud.mongodb.com/. Replace <username> and <password>. Example: mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",

@@ -1,0 +1,106 @@
+{
+    "name": "AITradex-Airdrop-Bot",
+    "logo": "https://miro.medium.com/max/1400/1*6A_cOfu7NqZZl16RJxEwSw.png",
+    "description": "AITradex Airdrop",
+    "keywords": ["airdrop", "cryptocurrency", "telegram", "bot"],
+    "repository": "https://github.com/MyDemir/Pompei-Airdrop-Bot/",
+    "stack": "container",
+    "buildpacks": [
+      {
+        "url": "https://github.com/heroku/heroku-buildpack-python"
+      },
+      {
+        "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+      }   
+    ],        
+    "env": {
+      "COIN_SYMBOL": {
+        "description": "Coin symbol. Example: BNB, ETH",
+        "required": true,
+        "value": "ATX"
+      },
+      "COIN_NAME": {
+        "description": "Coin name. Example: Bitcoin, Ethereum",
+        "required": true,
+        "value": "AI TradeX"
+      },
+      "AIRDROP_AMOUNT": {
+        "description": "How many tokens are you going to give? Example: 10000. Do not include ',' must be float number",
+        "required": true,
+        "value": "12000"
+      },
+      "AIRDROP_DATE": {
+        "description": "Date of reward distrubition. Example: 20 July 2021",
+        "required": true,
+        "value": "28 February 2023"
+      },
+      "AIRDROP_NETWORK": {
+        "description": "In which network/chain are you going to give? Example: Binance Smart Chain",
+        "required": false,
+        "value": "Binance Smart Chain"
+      },
+      "BOT_TOKEN": {
+        "description": "The token you get from @BotFather. Example: 1313552295:AAFxDGKhlco-FoWw-uyxInotlKvalidNEz-Q",
+        "required": true
+      },
+      "COIN_PRICE": {
+        "description": "Current price of coin Example: $0.01",
+        "required": true,
+        "value": "$0.00005"
+      },
+      "REFERRAL_REWARD": {
+        "description": "Extra reward participants will get for each referral. Example: 1000. Do not include ',' must be float number",
+        "required": true,
+        "value": "1"
+      },
+      "WEBSITE_URL": {
+        "description": "Website URL",
+        "required": false,
+        "value": "https://x100capital.tech"
+      },    
+      "EXPLORER_URL": {
+        "description": "Blockchain explorer URL",
+        "required": false,
+        "value": "https://bscscan.com/address/0x5ad666fE6Ec2F33394fc85455650Fc91A637b48B"
+      },     
+      "ADMIN_USERNAME": {
+        "description": "Bot owner's telegram username. Example: johndoe",
+        "required": true
+      },    
+      "MAX_USERS": {
+        "description": "Maximum number of participants. Example: 1000. Do not include ',' must be float number",
+        "required": true,
+        "value": "50000"
+      },
+      "MAX_REFS": {
+        "description": "Maximum number of referrals per participant. Example: 5",
+        "required": true,
+        "value": "2500"
+      },    
+      "CAPTCHA_ENABLED": {
+        "description": "Enable or disable captcha at start. Example: YES or NO",
+        "required": true,
+        "value": "YES"
+      },
+      "TWITTER_LINKS": {
+        "description": "Twitter page links seperated by comma. Single Example: https://twitter.com/bitcoin. Multiple Example: https://twitter.com/bitcoin,https://twitter.com/ethereum",
+        "required": true,
+        "value": "https://twitter.com/tradex_ai"
+      },
+      "TELEGRAM_LINKS": {
+        "description": "Twitter page links seperated by comma. Single Example: https://t.me/single. Multiple Example: https://t.me/multi,https://t.me/ple",
+        "required": true,
+        "value": "https://telegram.me/x100capitalofficial"
+      },
+      "DISCORD_LINKS": {
+        "description": "Discord server links seperated by comma. Single Example: https://discord.gg/example. Multiple Example: https://discord.gg/example,https://discord.gg/ple",
+        "required": true,
+        "value": "https://discord.gg/DS223xZf5Y"
+      },
+      "DB_URI": {
+        "description": "Get one from https://cloud.mongodb.com/. Replace <username> and <password>. Example: mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+        "required": true
+      }
+    }
+  }
+  
