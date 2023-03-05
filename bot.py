@@ -80,8 +80,8 @@ if(WEBSITE_URL != ""):
 WELCOME_MESSAGE = f"""
 Hello, NAME!👋 I am your friendly {COIN_NAME} Airdrop bot
 
-⭐️ For Joining - Get {AIRDROP_AMOUNT} {COIN_SYMBOL}
-⭐️ For each referral - Get {"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL}
+⭐️ For Joining - {AIRDROP_AMOUNT} {COIN_SYMBOL} chance to win!
+⭐️ For each referral - Get {REFERRAL_REWARD} Score
 
 📘By Participating you are agreeing to the {COIN_NAME} (Airdrop) Program Terms and Conditions. Please see pinned post for more information.
 
@@ -89,11 +89,12 @@ Click "🚀 Join Airdrop" to proceed"""
 tasks = ""
 
 PROCEED_MESSAGE = f"""
-🔹 Airdrop Date = *{AIRDROP_DATE}*
-🔹 Total Prize pool = 3,000,000.00 *{COIN_SYMBOL}*
-🔹 Airdrop Reward = *{AIRDROP_AMOUNT} {COIN_SYMBOL}*
+🔹 Airdrop Date Finish = *{AIRDROP_DATE}*
+🔹 Total Prize pool    = *3,000,000 {COIN_SYMBOL}*
+🔹 Total Winner        = *250*   
+🔹 Airdrop Reward      = *{AIRDROP_AMOUNT} {COIN_SYMBOL}*
 🔹 Extra reward per referral = *{"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL}* 
-   (max {MAX_REFS})
+   (max *{MAX_REFS}*)
 
 📢 Airdrop Rules/Mandatory Tasks:
 - Join our Telegram group(s)
