@@ -87,6 +87,11 @@
       "required": true,
       "value": "https://telegram.me/x100capitalofficial"
     },
+    "DISCORD_LINKS": {
+      "description": "Discord server links seperated by comma. Single Example: https://discord.gg/example. Multiple Example: https://discord.gg/example,https://discord.gg/ple",
+      "required": true,
+      "value": "https://discord.gg/DS223xZf5Y"
+    },
     "DB_URI": {
       "description": "Get one from https://cloud.mongodb.com/. Replace <username> and <password>. Example: mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
       "required": true
