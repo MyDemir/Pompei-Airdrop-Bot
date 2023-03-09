@@ -90,10 +90,10 @@ tasks = ""
 
 PROCEED_MESSAGE = f"""
 🔹 Airdrop Date Finish = *{AIRDROP_DATE}*
-🔹 Total Prize pool    = *3,000,000 {COIN_SYMBOL}*
-🔹 Total Winner        = *250*   
+🔹 Total Prize pool      = *3,000,000 {COIN_SYMBOL}*
+🔹 Total Winner            = *250*   
 🔹 Airdrop Reward      = *{AIRDROP_AMOUNT} {COIN_SYMBOL}*
-🔹 Extra reward per referral = *{"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL}* 
+🔹 Extra reward per referral  = *{"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL}* 
    (max *{MAX_REFS}*)
 
 📢 Airdrop Rules/Mandatory Tasks:
