@@ -89,17 +89,18 @@ Click "🚀 Join Airdrop" to proceed"""
 tasks = ""
 
 PROCEED_MESSAGE = f"""
-🔹 Airdrop Date Finish = *{AIRDROP_DATE}*
-🔹 Total Prize pool      = *3,000,000 {COIN_SYMBOL}*
-🔹 Total Winner            = *250*   
-🔹 Airdrop Reward      = *{AIRDROP_AMOUNT} {COIN_SYMBOL}*
-🔹 Extra reward per referral  = *{"{:,.2f}".format(REFERRAL_REWARD)} {COIN_SYMBOL}* 
-   (max *{MAX_REFS}*)
+🔹 Airdrop Date Finish : *{AIRDROP_DATE}*
+🔹 Total Prize pool       : *3,000,000 {COIN_SYMBOL}*
+🔹 Total Winner           : *250*   
+🔹 Airdrop Reward       : *{AIRDROP_AMOUNT} {COIN_SYMBOL}*
+🔹 Extra reward per referral  = *{"{:,.2f}".format(REFERRAL_REWARD)} p* 
+   (max : *{MAX_REFS}*)
 
 📢 Airdrop Rules/Mandatory Tasks:
 - Join our Telegram group(s)
 - Follow our Twitter page
 - Retweet,like pinned tweet
+- Join Discord
 
 NOTE: Users found cheating would be disqualified & banned immediately.
 
@@ -302,7 +303,7 @@ def follow_twitter(update, context):
             ))
             return FOLLOW_TWITTER
     update.message.reply_text(text=FOLLOW_TWITTER_TEXT)
-    update.message.reply_text(text="Type in the link to *your Twitter profile* to proceed.\nExample: \nhttps://twitter.com/example", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text(text="Type in the link to *your Twitter profile* to proceed: ", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"]]
     ))
     return JOIN_DISCORD
@@ -319,7 +320,7 @@ def submit_address(update, context):
         return JOIN_DISCORD
     USERINFO[user.id].update({"twitter_username": update.message.text.strip()})
     update.message.reply_text(text=JOIN_DISCORD_TEXT, parse_mode=telegram.ParseMode.MARKDOWN)
-    update.message.reply_text(text="Type in *your Discord username* to proceed.\n\nExample: jasmy#1234 \n\n_Incorrect Details? Use_ /restart _command to start over._", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text(text="Type in *your Discord username* to proceed (Your username is enough).\nExample: jasmy#1234 \n\n_Incorrect Details? Use_ /restart _command to start over._", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=ReplyKeyboardMarkup(
         [["Cancel"],["/restart"]]
     ))
     return SUBMIT_ADDRESS
