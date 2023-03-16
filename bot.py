@@ -100,7 +100,7 @@ PROCEED_MESSAGE = f"""
 - Join our Telegram group(s)
 - Follow our Twitter page
 - Retweet,like pinned tweet
-- Join Discord
+- Join our Discord(s)
 
 NOTE: Users found cheating would be disqualified & banned immediately.
 
@@ -274,7 +274,7 @@ def check_joined_channel(user):
         for link in TELEGRAM_LINKS.split("\n"):
             link ="@"+link.split("/")[-1]
             reply = telegram.bot.Bot(BOT_TOKEN).get_chat_member(link,user)
-            if reply.status in('left','kicked'):
+            if reply.status in ('left','kicked'):
                 return False
     except:
         return False
@@ -494,7 +494,7 @@ def error_submitdetails(update, context):
     return FOLLOW_TELEGRAM
 
 def error_telegram(update,context):
-    update.message.reply_text('Please click on \"Done\" to proceed, or \"Cancel\" to cancel the Airdrop',reply_markup=ReplyKeyboardMarkup(
+    update.message.reply_text('Please click on "Done" to proceed, or "Cancel" to cancel the Airdrop',reply_markup=ReplyKeyboardMarkup(
         [["Done"], ["Cancel"]]
     ))
     return FOLLOW_TWITTER
